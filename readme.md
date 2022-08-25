@@ -1,11 +1,17 @@
-git clone https://github.com/devmanorg/wine.git
+`git clone https://github.com/devmanorg/wine.git`
 
-git clone https://github.com/RNDpacman/wine.git
+`git clone https://github.com/RNDpacman/wine.git tmp`
 
-python -m venv ./wine
+`cp -R ./tmp/* ./wine/`
 
-cd ./wine
+`python -m venv ./wine`
 
-pip install --upgrade pip
+`cd ./wine`
 
-pip install -r requirements.txt
+`source ./bin/activate`
+
+`pip install --upgrade pip`
+
+`pip install -r requirements.txt`
+
+`python ./main.py`
