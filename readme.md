@@ -1,3 +1,5 @@
+### Install
+
 `git clone https://github.com/devmanorg/wine.git`
 
 `git clone https://github.com/RNDpacman/wine.git tmp`
@@ -13,5 +15,7 @@
 `pip install --upgrade pip`
 
 `pip install -r requirements.txt`
+
+### Run
 
 `python ./main.py`
