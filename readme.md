@@ -1,7 +1,7 @@
 Скрипт запускает сервер http и посредством шаблонизации позволяет актуализировать карточки товаров с [сайта](https://github.com/devmanorg/wine) магазина авторского вина "Новое русское вино".
 Данные для карточек товаров, скрипт импортирует из файла xlsx.
 
-### Образец структуры данных
+### Пример структуры данных
 | **Категория**   | **Название**        | **Сорт**        | **Цена** | **Картинка**              | **Акция**            |
 | --------------- | ------------------- | --------------- | -------- | ------------------------- | -------------------- |
 | Белые вина      | Белая леди          | Дамский пальчик | 399      | belaya\_ledi.png          | Выгодное предложение |
@@ -17,7 +17,9 @@
 | Крепкие Напитки | Чача                |                 | 299      | chacha.png                | Выгодное предложение |
 | Крепкие Напитки | Коньяк кизиловый    |                 | 350      | konyak\_kizilovyi.png     |                      |
 
-Образец структуры данных в файле репозитория `product_cards_example.xlsx`. Вы можете отредактировать этот файл под свои нужды. Название столбцов менять нельзя.
+В репозитории находится образец этих данных в файле `product_cards_example.xlsx`.
+
+Вы можете отредактировать этот файл под свои нужды. Название столбцов менять нельзя (за исключением столбца `Категория`) без правки кода.
 
 
 ### Install
@@ -54,8 +56,30 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+### Help
+
+```
+python ./main.py --help
+
+usage: main.py [-h] [--template-file FILE] [--category-key STRING] [--ip IP] [--port PORT] file
+
+Run http server
+
+positional arguments:
+  file                  The xlsx catalog file
+
+options:
+  -h, --help            show this help message and exit
+  --template-file FILE  Template html file default: template.html
+  --category-key STRING
+                        The name of the column in the catalog excel file default: Категория
+  --ip IP               IP address default: 127.0.0.1
+  --port PORT           IP address default: 8000
+```
+
 ### Run
 
 ```
-python ./main.py
+python ./main.py ./product_cards_example.xlsx
 ```
+Затем откройте сайт в браузере http://127.0.0.1:8000
