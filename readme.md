@@ -31,15 +31,7 @@
 ### Install
 
 ```
-git clone https://github.com/devmanorg/wine.git
-```
-
-```
-git clone https://github.com/RNDpacman/wine.git tmp
-```
-
-```
-cp -R ./tmp/* ./wine/
+git clone https://github.com/RNDpacman/wine.git
 ```
 
 ```
