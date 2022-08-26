@@ -100,9 +100,8 @@ def get_parser():
     port = 8000
 
     formatter = lambda prog: argparse.HelpFormatter(prog,max_help_position=52)
-    parser = argparse.ArgumentParser(formatter_class=formatter)
 
-    parser = argparse.ArgumentParser(description='Run http server')
+    parser = argparse.ArgumentParser(description='Run http server', formatter_class=formatter)
     parser.add_argument('file', help='The xlsx catalog file')
     parser.add_argument('--template-file', metavar='FILE', default=tmpl_file, help=f'Template html file default: {tmpl_file}')
     parser.add_argument('--category-key', metavar='STRING', default=cat_key_name, help=f'The name of the column in the catalog excel file default: {cat_key_name}')

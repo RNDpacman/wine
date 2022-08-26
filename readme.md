@@ -75,12 +75,11 @@ positional arguments:
   file                  The xlsx catalog file
 
 options:
-  -h, --help            show this help message and exit
-  --template-file FILE  Template html file default: template.html
-  --category-key STRING
-                        The name of the column in the catalog excel file default: Категория
-  --ip IP               IP address default: 127.0.0.1
-  --port PORT           IP address default: 8000
+  -h, --help             show this help message and exit
+  --template-file FILE   Template html file default: template.html
+  --category-key STRING  The name of the column in the catalog excel file default: Категория
+  --ip IP                IP address default: 127.0.0.1
+  --port PORT            IP address default: 8000
 ```
 
 ### Run
