@@ -19,19 +19,19 @@ def get_year_word(year: int) -> str:
 
 
 
-def get_df_excel(file: str, na_values='') -> list:
+def get_df_from_excel(file: str, na_values='') -> list:
     '''
     Возвращает данные (data frame) из таблицы excel в виде списка словарей
 
     file - имя файла
     na_values - чем заменить значения nan/Nan
     '''
-    excel_df = pandas.read_excel(file,
+    df_excel = pandas.read_excel(file,
                                  na_values=na_values,
                                  keep_default_na=False
                                  )
 
-    return excel_df.to_dict(orient='records')
+    return df_excel.to_dict(orient='records')
 
 
 def create_category(iterable, category_key) -> dict:
@@ -97,7 +97,7 @@ def get_parser():
     ip = '127.0.0.1'
     port = 8000
 
-    formatter = lambda prog: argparse.HelpFormatter(prog,max_help_position=52)
+    formatter = lambda prog: argparse.HelpFormatter(prog, max_help_position=52)
 
     parser = argparse.ArgumentParser(description='Run http server', formatter_class=formatter)
     parser.add_argument('file', help='The xlsx catalog file')
