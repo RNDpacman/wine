@@ -82,7 +82,7 @@ def get_catalog(file: str, category_key, na_values=None) -> dict:
     na_values - чем заменить значения nan/Nan
     '''
 
-    product_cards = get_df_excel(file, na_values=na_values)
+    product_cards = get_df_from_excel(file, na_values=na_values)
 
     return create_category(product_cards, category_key)
 
