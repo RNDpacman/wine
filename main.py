@@ -1,42 +1,37 @@
+import argparse
+import utils
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import datetime
-import utils
 
-HOST, PORT = '127.0.0.1', 8000
-
-# год основания компании
 FOUNDED = 1920
 
-# лет прошло с момента основания компании
 YEARS = datetime.today().year - FOUNDED
-
-# файл каталога
-FILE_CATALOG = 'wine3.xlsx'
-
-# Ключ который содержит название категорий
-CAT_KEY = 'Категория'
-
-# получаем каталог наших вин
-WINES_CATALOG = utils.get_catalog(FILE_CATALOG, CAT_KEY, na_values=None)
-
-
-print(f'open {HOST=}:{PORT=}')
 
 env = Environment(
     loader=FileSystemLoader('.'),
     autoescape=select_autoescape(['html', 'xml'])
 )
 
-template = env.get_template('template.html')
 
-rendered_page = template.render(
-                years_ago=f'Уже {YEARS} {utils.year_word(YEARS)} с вами',
-                wines=WINES_CATALOG
-)
+def main():
 
-with open('index.html', 'w', encoding="utf8") as file:
-    file.write(rendered_page)
+    args = utils.get_parser()
 
-server = HTTPServer((HOST, PORT), SimpleHTTPRequestHandler)
-server.serve_forever()
+    product_cards_catalog = utils.get_catalog(args.file, args.category_key, na_values=None)
+
+    template = env.get_template(args.template_file)
+
+    rendered_page = template.render(
+                    years_ago=f'Уже {YEARS} {utils.get_year_word(YEARS)} с вами',
+                    product_cards_catalog=product_cards_catalog
+    )
+
+    with open('index.html', 'w', encoding="utf8") as file:
+        file.write(rendered_page)
+
+    server = HTTPServer((args.ip, args.port), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+if __name__ == '__main__':
+    main()

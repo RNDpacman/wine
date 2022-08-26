@@ -80,7 +80,6 @@
     
     </div>
 
-    
     <div class="owl-carousel hero-slide owl-style">
       <div class="intro-section container" style="background-image: url('assets/hero_1.jpg');">
         <div class="row justify-content-center text-center align-items-center">
@@ -102,7 +101,6 @@
 
     </div>
     
-    
     <div><a id="products"></a></div>
     <div class="site-section">
       <div class="container">
@@ -115,42 +113,41 @@
         </div>
         <div class="row">
 
-        {% for category in wines %}
+        {% for category, product_cards in product_cards_catalog.items() %}
 
-        <div class="col-12 section-title text-left mb-5">
+          <div class="col-12 section-title text-left mb-5">
             <h2 class="d-block">{{category}}</h2>
           </div>
 
-          {% for wine in wines[category] %}
+          {% for product_card in product_cards %}
 
-          <div class="col-lg-4 mb-5 col-md-6">
-            <div class="wine_v_1 text-center pb-4 pt-5">
-              <img src={{'images/'+wine.Картинка}} alt="Image" class="img-fluid">
+            <div class="col-lg-4 mb-5 col-md-6">
+              <div class="wine_v_1 text-center pb-4 pt-5">
+                <img src={{'images/'+product_card.Картинка}} alt="Image" class="img-fluid">
 
-              {% if wine.Акция %}
+            {% if product_card.Акция %}
 
               <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
 
-              {% endif %}
+            {% endif %}
 
               <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{wine.Название}}</h3>
+                <h3 class="heading mt-3 mb-3 text-dark">{{product_card.Название}}</h3>
                 <p>
 
-                  {% if wine.Сорт %}
+            {% if product_card.Сорт %}
 
-                  Сорт винограда - {{wine.Сорт}}<br/>
+                  Сорт винограда - {{product_card.Сорт}}<br/>
 
-                  {% endif %}
+            {% endif %}
 
-                  <span class="price">{{wine.Цена}} р.</span>
+                  <span class="price">{{product_card.Цена}} р.</span>
                 </p>
               </div>
             </div>
           </div>
 
           {% endfor %}
-
         {% endfor %}
 
       </div>
