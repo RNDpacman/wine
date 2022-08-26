@@ -6,15 +6,17 @@ from datetime import datetime
 
 FOUNDED = 1920
 
-YEARS = datetime.today().year - FOUNDED
-
-env = Environment(
-    loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
 
 
 def main():
+
+    years = datetime.today().year - FOUNDED
+
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+
 
     args = utils.get_parser()
 
@@ -23,7 +25,7 @@ def main():
     template = env.get_template(args.template_file)
 
     rendered_page = template.render(
-                    years_ago=f'Уже {YEARS} {utils.get_year_word(YEARS)} с вами',
+                    years_ago=f'Уже {years} {utils.get_year_word(years)} с вами',
                     product_cards_catalog=product_cards_catalog
     )
 

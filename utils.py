@@ -19,21 +19,19 @@ def get_year_word(year: int) -> str:
 
 
 
-def get_data_excel(file: str, na_values='') -> list:
+def get_df_excel(file: str, na_values='') -> list:
     '''
-    Возвращает данные из таблицы excel в виде списка словарей
+    Возвращает данные (data frame) из таблицы excel в виде списка словарей
 
-    file_name - имя файла
-    sheet_name - имя листа в книге
+    file - имя файла
     na_values - чем заменить значения nan/Nan
     '''
-    excel_data_df = pandas.read_excel(file,
-                                      na_values=na_values,
-                                      keep_default_na=False
-                                      )
+    excel_df = pandas.read_excel(file,
+                                 na_values=na_values,
+                                 keep_default_na=False
+                                 )
 
-    return excel_data_df.to_dict(orient='records')
-
+    return excel_df.to_dict(orient='records')
 
 
 def create_category(iterable, category_key) -> dict:
@@ -44,7 +42,7 @@ def create_category(iterable, category_key) -> dict:
     iterable - iterable object который содержит словари ключи которых
     являются названием категорий
 
-    category_name_key - Название ключа, значение которого содержит название категории по которому
+    category_key - Название ключа, значение которого содержит название категории по которому
     будет идти отбор словарей
 
     Example:
@@ -84,7 +82,7 @@ def get_catalog(file: str, category_key, na_values=None) -> dict:
     na_values - чем заменить значения nan/Nan
     '''
 
-    product_cards = get_data_excel(file, na_values=na_values)
+    product_cards = get_df_excel(file, na_values=na_values)
 
     return create_category(product_cards, category_key)
 
